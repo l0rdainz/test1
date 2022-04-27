@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 const connectDB = require('./config/db');
 const books = require('./routes/api/books.js');
 const users = require('./routes/api/users.js');
@@ -8,6 +9,8 @@ const recipes = require('./routes/api/recipes.js');
 const shops = require('./routes/api/shops.js');
 const simulatorresults = require('./routes/api/simulatorresults.js');
 const app = express();
+
+app.use(cors())
 connectDB();
 app.get('/', (req, res) => res.send('Hello world!'));
 app.use(express.json())
