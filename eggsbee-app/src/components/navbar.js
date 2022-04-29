@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Link} from "react-router-dom";
+import {NavLink,Link} from "react-router-dom";
 import "../styles/navbar.css";
 import { FaAlignJustify } from 'react-icons/fa';
 
@@ -22,11 +22,36 @@ function Navbar() {
           </div>
         </div>
         <div className="rightSide">
-          <Link to="/"> Home </Link>
-          <Link to="/eggsbee"> Eggsbee </Link>
-          <Link to="/simulator"> Simulator </Link>
-          <Link to="/record"> Records </Link>
-          <Link to="/register"> Register </Link>
+        <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? "link-active" : "link")}
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/eggsbee"
+        className={({ isActive }) => (isActive ? "link-active" : "link")}
+      >
+        Eggsbee
+      </NavLink>
+      <NavLink
+        to="/simulator"
+        className={({ isActive }) => (isActive ? "link-active" : "link")}
+      >
+        Simulator
+      </NavLink>
+      <NavLink
+        to="/record"
+        className={({ isActive }) => (isActive ? "link-active" : "link")}
+      >
+        Records
+      </NavLink>
+      <NavLink
+        to="/register"
+        className={({ isActive }) => (isActive ? "link-active" : "link")}
+      >
+        Register
+      </NavLink>
           <button onClick={toggleNavbar}>
             <FaAlignJustify/>
           </button>

@@ -25,6 +25,9 @@
     align-items: center;
     justify-content: center;
   }
+  .navbar .rightSide .link-active {
+    text-decoration: underline;
+  }
   
   .navbar a {
     color: white;

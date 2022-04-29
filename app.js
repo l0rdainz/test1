@@ -8,6 +8,8 @@ const orders = require('./routes/api/orders.js');
 const recipes = require('./routes/api/recipes.js');
 const shops = require('./routes/api/shops.js');
 const simulatorresults = require('./routes/api/simulatorresults.js');
+const eggsbees = require('./routes/api/eggsbee.js');
+
 const app = express();
 
 app.use(cors())
@@ -15,6 +17,7 @@ connectDB();
 app.get('/', (req, res) => res.send('Hello world!'));
 app.use(express.json())
 app.use('/api/books', books);
+app.use('/api/eggsbee', eggsbees);
 app.use('/api/users', users);
 app.use('/api/exps', experiments);
 app.use('/api/orders', orders);
