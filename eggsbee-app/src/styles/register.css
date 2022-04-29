@@ -1,0 +1,45 @@
+.register{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 10%;
+    width:50%; 
+}
+.register img{
+    opacity:0.6;
+    width: 50%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.register h2 {
+  
+    text-align: center;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.register button {
+    border: none;
+    align-items: center;
+    border-radius: 5px;
+    display: block;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #121619;
+    height: 5%;
+    width: 70%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+  .register button:hover {
+    background-color: green;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+  }
