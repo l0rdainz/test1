@@ -24,4 +24,20 @@ router.post('/', (req, res) => {
   .then(eggsbee => res.json({ msg: 'Eggsbee added successfully' }))
   .catch(err => res.status(400).json({ error: 'Unable to add this Eggsbee' }));
 });
+
+// update order
+router.put('/:id', (req, res) => {
+    Eggsbee.findByIdAndUpdate(req.params.id, req.body)
+      .then(eggsbee => res.json({ msg: `${eggsbee._id} Updated successfully` }))
+      .catch(err =>
+        res.status(400).json({ error: 'Unable to update the Database' })
+      );
+  });
+  
+  // delete order
+  router.delete('/:id', (req, res) => {
+    Eggsbee.findByIdAndRemove(req.params.id, req.body)
+      .then(eggsbee => res.json({ mgs: `Order ${eggsbee._id} deleted successfully` }))
+      .catch(err => res.status(404).json({ error: 'No such order' }));
+  });
 module.exports = router;

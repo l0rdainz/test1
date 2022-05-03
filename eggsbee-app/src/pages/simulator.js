@@ -2,7 +2,7 @@ import React from 'react'
 
 function simulator() {
   return (
-    <div>simulator</div>
+    <div>This is the simulator</div>
   )
 }
 

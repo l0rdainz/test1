@@ -15,7 +15,7 @@ function Navbar() {
          
           <div className="hiddenLinks">
             <Link to="/"> Home </Link>
-            <Link to="/eggsbee"> Eggsbee </Link>
+            <Link to="/eggsbee"> Recipe </Link>
             <Link to="/simulator"> Simulator </Link>
             <Link to="/record"> Records </Link>
             <Link to="/register"> Register </Link>

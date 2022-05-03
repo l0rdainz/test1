@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const RecipeSchema = new mongoose.Schema({
   Instruction: {
-    type: String,
+    type: [String],
     required: true
   },
   Description: {
@@ -14,11 +14,21 @@ const RecipeSchema = new mongoose.Schema({
     default:false
   },
   Ratings: {
-    type: Number
+    type: [Number]
   },
   Createdby: {
     type: String,
     required:true
+  },
+  Materials: {
+    type: [String],
+    required: true
+  },
+  Title:{
+    type: String
+  },
+  Img:{
+    type: String
   }
 });
 

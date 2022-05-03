@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   Recipe.create(req.body)
   .then(recipe => res.json({ msg: 'Recipe added successfully' }))
-  .catch(err => res.status(400).json({ error: 'Unable to add this recipe' }));
+  .catch(err => res.status(400).json({ error: 'Unable to add this recipe '+ err}));
 });
 
 // update recipe

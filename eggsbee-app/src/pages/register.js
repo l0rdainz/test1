@@ -12,7 +12,14 @@ function Register() {
     const handleClose = () => SetToggle(false);
   const handleShow = () => SetToggle(false);
   const registereggsbee = async()=>{
-
+    axios.post('http://192.168.1.166:8082/api/eggsbee/',{
+        Name: `${name}`,
+        Eggsbeeid: `${eggsbeeid}`,
+    })
+    .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
   return (
     <div>
@@ -26,13 +33,14 @@ function Register() {
             // to register new eggsbee
             <div className='form'>
                 <h1>Register</h1>
-                 <input type="text" value={eggsbeeid} placeholder="EggsbeeId (xxx-xxxx-xxxxx)"
+                 <input type="text" value={eggsbeeid} placeholder="EggsbeeId (xxx-xxx-xxxx)"
           onChange={(e) => setEggsbeeid(e.target.value)}/>
                <br></br>
-               <input type="text" value={name} placeholder="Name (My Fav Eggsbee)"
+               <input type="text" value={name} placeholder="Name (E.g My Fav Eggsbee)"
           onChange={(e) => setName(e.target.value)}/>
           <br></br>
-                <button onClick={()=>SetSubmitted(true)}> Submit</button>
+                <button onClick={()=>SetSubmitted(true)+registereggsbee()+setName("")+setEggsbeeid("")}> Submit</button>
+                <br></br>
                 {Submitted ?(
                 <h2>Your Eggsbee has been registered. </h2>):("")}
                 </div>

@@ -5,7 +5,7 @@ const EggsbeeSchema = new mongoose.Schema({
         type:String,
     },
     Eggsbeeid:{
-        identifier:String,
+        type:String,
     }
  
 });

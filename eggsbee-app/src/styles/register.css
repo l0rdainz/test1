@@ -48,21 +48,25 @@
     display:block;
     margin-left:auto;
     margin-right:auto;
-    padding: 10%;
+    padding: 3%;
     width:50%; 
+    
   }
   .form h1{
     display:block;
     margin-left:auto;
     margin-right:auto;
+    margin-top: 0;
+
     
     
   }
   .form input{
     display:block;
+    height:10%;
     margin-left:auto;
     margin-right:auto;
-    padding: 3%;
+    padding: 1.5%;
     width:100%;
     border-radius: 4px;
   }
@@ -74,12 +78,11 @@
     cursor: pointer;
     justify-content: center;
     background-color: #121619;
-    height: 50px;
+    height: 40px;
     width: 180px;
     color: white;
     text-decoration: none;
     font-size: 20px;
-   
     flex: 50%;
 
    
@@ -92,12 +95,11 @@
     cursor: pointer;
     justify-content: center;
     background-color: blue;
-    height: 50px;
+    height: 40px;
     width: 180px;
     color: white;
     text-decoration: none;
     font-size: 20px;
-   
     flex: 50%;
 
    
