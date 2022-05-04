@@ -9,6 +9,8 @@ import Records from "./pages/records";
 import Simulator from "./pages/simulator";
 import Register from "./pages/register"
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className="App">

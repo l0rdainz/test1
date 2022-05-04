@@ -12,7 +12,9 @@ function Register() {
     const handleClose = () => SetToggle(false);
   const handleShow = () => SetToggle(false);
   const registereggsbee = async()=>{
-    axios.post('http://192.168.1.166:8082/api/eggsbee/',{
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    console.log(BASE_URL)
+    axios.post(BASE_URL+'eggsbee/',{
         Name: `${name}`,
         Eggsbeeid: `${eggsbeeid}`,
     })

@@ -39,7 +39,7 @@
   }
   
   .register button:hover {
-    background-color: blue;
+    background-color: silver;
     cursor: pointer;
     transition: 0.3s ease-in;
   }
@@ -94,7 +94,7 @@
     border-radius: 5px;
     cursor: pointer;
     justify-content: center;
-    background-color: blue;
+    background-color: silver;
     height: 40px;
     width: 180px;
     color: white;
