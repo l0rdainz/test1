@@ -15,7 +15,7 @@ function Navbar() {
          
           <div className="hiddenLinks">
             <Link to="/"> Home </Link>
-            <Link to="/eggsbee"> Recipe </Link>
+            <Link to="/eggsbee"> Recipes </Link>
             <Link to="/simulator"> Simulator </Link>
             <Link to="/record"> Records </Link>
             <Link to="/register"> Register </Link>
@@ -32,7 +32,7 @@ function Navbar() {
         to="/eggsbee"
         className={({ isActive }) => (isActive ? "link-active" : "link")}
       >
-        Eggsbee
+        Recipes
       </NavLink>
       <NavLink
         to="/simulator"
