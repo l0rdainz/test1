@@ -72,7 +72,7 @@
   }
   @media only screen and (max-width: 900px) {
     .navbar .rightSide a {
-      width: 70px;
+      width: 50px;
     }
     .navbar .leftSide {
       padding-left: 50px;

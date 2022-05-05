@@ -20,10 +20,10 @@ function Eggsbee() {
   
 
   const handleExplore =() =>{
-    console.log('hi')
+    SetAddrecipe(false)
   }
   const handleMyrecipes =() =>{
-    console.log('hi1')
+    console.log('This button is also under construction')
   }
   const handleAddrecipe =() =>{
     console.log('hi2')
@@ -61,6 +61,7 @@ function Eggsbee() {
   
       const fetchData = async () => {
         const response = await fetch(BASE_URL+'recipes/')
+        // need to trim the size of description here
         const recipes = await response.json()
         SetRecipe(recipes)
       }
@@ -102,7 +103,7 @@ function Eggsbee() {
           <Container>
             <Row>
             {Recipes.map((Recipes) => (
-                    <Col xs='4'>
+                    <Col s='4'>
                         <Card key ={Recipes._id} className='cards'>
                             
                             <Card.Img className="cardimg" src="https://via.placeholder.com/150x150" />
