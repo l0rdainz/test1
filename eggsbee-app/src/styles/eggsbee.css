@@ -121,6 +121,7 @@
     margin-top:10px;
     padding:0;
     height: 600px;
+    cursor:auto;
     
 }
 
@@ -129,6 +130,16 @@
         width:70%}
         .explorebody .sidenav{
             width:30%
+        }
+        .explorebody .results .cards Button{
+            margin-top:10px;
+            padding:0;
+            height: 30px;
+            font-size: 1rem;
+            margin:0;
+            width:80%;
+            float:center
+            
         }
         
   }

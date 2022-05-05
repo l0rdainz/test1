@@ -2,7 +2,8 @@ import React, {useState,useEffect} from 'react'
 import BannerImage from "../assets/explore.webp";
 import '../styles/eggsbee.css';
 import axios from 'axios';
-import { Card,Button,Row,Container,Col} from "react-bootstrap";
+import { Card,Button,Row,Container,Col,Modal} from "react-bootstrap";
+import Cardmodal from "./../components/Cardmodal"
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -17,7 +18,8 @@ function Eggsbee() {
   const[Mine,SetMine] = useState(false)
   const[Addrecipe,SetAddrecipe] = useState(false)
   const[Top,SetTop] = useState(false)
-  
+  const [cardbutton,SetCardbutton]= useState(true)
+  const [selectedArray,setSelectedArray]=useState([])
 
   const handleExplore =() =>{
     SetAddrecipe(false)
@@ -32,6 +34,18 @@ function Eggsbee() {
   const handleTop =() =>{
     console.log('This button is under construction')
   }
+  const handlecardbutton=(recipe) =>{
+    setSelectedArray(recipe)
+    
+  }
+  const callmodel=() =>{
+    SetCardbutton(!cardbutton)
+    console.log({selectedArray})
+    
+  }
+  useEffect(() => {
+    callmodel(); // This is be executed when `loading` state changes
+}, [selectedArray])
   const addrecipe = async()=>{
     
     axios.post(BASE_URL+'recipes/',{
@@ -102,24 +116,56 @@ function Eggsbee() {
         <div className='results'>
           <Container>
             <Row>
-            {Recipes.map((Recipes) => (
-                    <Col s='4'>
-                        <Card key ={Recipes._id} className='cards'>
+            {Recipes.map((Recipe) => (
+                    <Col xs={12} sm={6} md={4}>
+                        <Card key ={Recipe._id} className='cards'>
                             
                             <Card.Img className="cardimg" src="https://via.placeholder.com/150x150" />
 
                             <Card.Body>
-                                <Card.Title>{Recipes.Title}</Card.Title>
-                                <Card.Text>{Recipes.Description}</Card.Text>
-                                <Button>View Recipe </Button>
+                                <Card.Title><b>{Recipe.Title}</b></Card.Title>
+                                <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
+                                <Button onClick={()=>handlecardbutton(Recipe)}>View Recipe </Button>
                             </Card.Body>
-                            
+                            <Modal show={cardbutton} onHide={()=>SetCardbutton(false)}>
+
+<Modal.Header closeButton>
+
+  <Modal.Title><b>{selectedArray.Title}</b></Modal.Title>
+
+</Modal.Header>
+
+<Modal.Body><b>Description: </b>{selectedArray.Description}<br></br>
+<b>Materials:</b> <ul>{selectedArray.Materials.map((ingredient)=>(
+  <li>{ingredient}</li>
+))}</ul>
+<b>Instructions:</b><ol>{selectedArray.Instruction.map((instruction)=>(
+  <li>{instruction}</li>
+))}</ol>
+</Modal.Body>
+
+<Modal.Footer>
+
+  <Button onClick={()=>SetCardbutton(false)}>
+
+    Close
+
+  </Button>
+
+</Modal.Footer>
+
+</Modal>
                         </Card>
+                       
                         </Col>
+                        
                
                 ))}
 </Row>
           </Container>
+
+
+         
         </div>
        
       )}
