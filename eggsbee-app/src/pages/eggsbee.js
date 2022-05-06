@@ -14,10 +14,9 @@ function Eggsbee() {
   const[Instruction,SetInstruction] = useState("")
   const[Private,SetPrivate] = useState(false)
   const[submitted,SetSubmitted] = useState(false)
-  const[Explore,SetExplore] = useState(false)
-  const[Mine,SetMine] = useState(false)
+  // const[Mine,SetMine] = useState(false)
   const[Addrecipe,SetAddrecipe] = useState(false)
-  const[Top,SetTop] = useState(false)
+  // const[Top,SetTop] = useState(false)
   const [cardbutton,SetCardbutton]= useState(true)
   const [selectedArray,setSelectedArray]=useState([])
 
@@ -38,12 +37,14 @@ function Eggsbee() {
     setSelectedArray(recipe)
     
   }
-  const callmodel=() =>{
-    SetCardbutton(!cardbutton)
-    console.log({selectedArray})
-    
-  }
+ 
   useEffect(() => {
+    
+    const callmodel=() =>{
+      
+      SetCardbutton(!cardbutton)
+      console.log({selectedArray})
+    }
     callmodel(); // This is be executed when `loading` state changes
 }, [selectedArray])
   const addrecipe = async()=>{
@@ -75,8 +76,14 @@ function Eggsbee() {
   
       const fetchData = async () => {
         const response = await fetch(BASE_URL+'recipes/')
-        // need to trim the size of description here
         const recipes = await response.json()
+        //remove the recipes that are private here!!
+        
+        for(var i=0;i<recipes.length;i++){
+          if(recipes[i].Private == true){
+            recipes.splice(i,1)
+          }
+        }
         SetRecipe(recipes)
       }
       fetchData()
@@ -117,7 +124,9 @@ function Eggsbee() {
           <Container>
             <Row>
             {Recipes.map((Recipe) => (
+              
                     <Col xs={12} sm={6} md={4}>
+                      
                         <Card key ={Recipe._id} className='cards'>
                             
                             <Card.Img className="cardimg" src="https://via.placeholder.com/150x150" />
@@ -127,35 +136,36 @@ function Eggsbee() {
                                 <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
                                 <Button onClick={()=>handlecardbutton(Recipe)}>View Recipe </Button>
                             </Card.Body>
+                            {cardbutton ?(
                             <Modal show={cardbutton} onHide={()=>SetCardbutton(false)}>
 
-<Modal.Header closeButton>
+                                <Modal.Header closeButton>
 
-  <Modal.Title><b>{selectedArray.Title}</b></Modal.Title>
+                                    <Modal.Title><b>{selectedArray.Title}</b></Modal.Title>
 
-</Modal.Header>
+                                </Modal.Header>
 
-<Modal.Body><b>Description: </b>{selectedArray.Description}<br></br>
-<b>Materials:</b> <ul>{selectedArray.Materials.map((ingredient)=>(
-  <li>{ingredient}</li>
-))}</ul>
-<b>Instructions:</b><ol>{selectedArray.Instruction.map((instruction)=>(
-  <li>{instruction}</li>
-))}</ol>
-</Modal.Body>
+                                <Modal.Body><b>Description: </b>{selectedArray.Description}<br></br>
+                                            <b>Materials:</b> <ul>{selectedArray.Materials.map((ingredient)=>(
+                                            <li>{ingredient}</li>
+                                            ))}</ul>
+                                            <b>Instructions:</b><ol>{selectedArray.Instruction.map((instruction)=>(
+                                            <li>{instruction}</li>
+                                            ))}</ol>
+                                </Modal.Body>
 
-<Modal.Footer>
+                                <Modal.Footer>
 
-  <Button onClick={()=>SetCardbutton(false)}>
+                                   <Button onClick={()=>SetCardbutton(false)}>
 
-    Close
+                                    Close
 
-  </Button>
+                                  </Button>
 
-</Modal.Footer>
+                                </Modal.Footer>
 
-</Modal>
-                        </Card>
+                            </Modal>):("")}
+                              </Card>
                        
                         </Col>
                         
