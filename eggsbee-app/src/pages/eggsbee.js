@@ -3,7 +3,7 @@ import BannerImage from "../assets/explore.webp";
 import '../styles/eggsbee.css';
 import axios from 'axios';
 import { Card,Button,Row,Container,Col,Modal} from "react-bootstrap";
-import Cardmodal from "./../components/Cardmodal"
+
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -13,6 +13,8 @@ function Eggsbee() {
   const[Materials,SetMaterials] = useState("")
   const[Instruction,SetInstruction] = useState("")
   const[Private,SetPrivate] = useState(false)
+  const[Premium,SetPremium] = useState(false)
+  const[Imgurl,Setimgurl]=useState("")
   const[submitted,SetSubmitted] = useState(false)
   // const[Mine,SetMine] = useState(false)
   const[Addrecipe,SetAddrecipe] = useState(false)
@@ -43,9 +45,10 @@ function Eggsbee() {
     const callmodel=() =>{
       
       SetCardbutton(!cardbutton)
-      console.log({selectedArray})
+     
     }
-    callmodel(); // This is be executed when `loading` state changes
+    callmodel();
+     // This is be executed when `loading` state changes
 }, [selectedArray])
   const addrecipe = async()=>{
     
@@ -56,16 +59,20 @@ function Eggsbee() {
         Createdby: "tester1111",
         Materials: `${Materials}`.split(','),
         Instruction: `${Instruction}`.split(','),
+        Premium: `${Premium}`,
+        Img: `${Imgurl}  `
 
     })
     document.getElementById("checkbox").checked = false;
+    document.getElementById("checkbox1").checked = false;
     SetSubmitted(true)
     SetDescription("")
     SetInstruction ("")
     SetMaterials("")
     SetTitle("")
     SetPrivate(false)
-    
+    SetPremium(false)
+    Setimgurl("")
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -80,11 +87,12 @@ function Eggsbee() {
         //remove the recipes that are private here!!
         
         for(var i=0;i<recipes.length;i++){
-          if(recipes[i].Private == true){
+          if(recipes[i].Private === true){
             recipes.splice(i,1)
           }
         }
         SetRecipe(recipes)
+        console.log(recipes[0].Premium)
       }
       fetchData()
     },[])
@@ -111,7 +119,9 @@ function Eggsbee() {
       <textarea placeholder='Description' value={Description} onChange={(e) => SetDescription(e.target.value)}></textarea>
       <input type="text" placeholder='Materials (delimiter = commar)eg. material1,material2,material2' value={Materials} onChange={(e)=>SetMaterials(e.target.value)}></input>
       <textarea placeholder='Instructions (delimiter = commar) step1,step2,step3' value={Instruction} onChange={(e)=>SetInstruction(e.target.value)}></textarea>
+      <input type="text" placeholder='Image URL' value={Imgurl} onChange={(e) => Setimgurl(e.target.value)}></input>
       <span><input type="checkbox" id="checkbox" onChange={()=>SetPrivate(!Private)} />This is a private recipe</span>
+      <span><input type="checkbox" id="checkbox1" onChange={()=>SetPremium(!Premium)} />This is a premium recipe</span>
       <button onClick={addrecipe}> Add</button>
       
       {submitted ?(
@@ -129,12 +139,14 @@ function Eggsbee() {
                       
                         <Card key ={Recipe._id} className='cards'>
                             
-                            <Card.Img className="cardimg" src="https://via.placeholder.com/150x150" />
+                            <Card.Img className="cardimg" src={Recipe.Img[0] } />
 
                             <Card.Body>
                                 <Card.Title><b>{Recipe.Title}</b></Card.Title>
                                 <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
                                 <Button onClick={()=>handlecardbutton(Recipe)}>View Recipe </Button>
+                                
+                                <div className='cardfooter' id={ Recipe.Premium === true ? 'prem' : 'norm'}>Premium</div>
                             </Card.Body>
                             {cardbutton ?(
                             <Modal show={cardbutton} onHide={()=>SetCardbutton(false)}>

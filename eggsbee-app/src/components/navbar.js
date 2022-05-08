@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {NavLink} from "react-router-dom";
 import "../styles/navbar.css";
 import { FaAlignJustify } from 'react-icons/fa';
+import {useAuth0} from "@auth0/auth0-react";
 
 function Navbar() {
     const [openLinks, setOpenLinks] = useState(false);
@@ -9,6 +10,11 @@ function Navbar() {
     const toggleNavbar = () => {
       setOpenLinks(!openLinks);
     };
+  
+      const {loginWithRedirect} = useAuth0();
+ 
+
+    
     return (
       <div className="navbar">
         
@@ -48,7 +54,10 @@ function Navbar() {
             <FaAlignJustify/>
           </button>
         </div>
-        <button>Login</button>
+        <button onClick={() => loginWithRedirect()}>Login</button>
+        <button onClick={() => loginWithRedirect()}>Log Out</button>
+        
+        
       </div>
     );
   }
