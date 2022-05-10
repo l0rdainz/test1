@@ -6,6 +6,10 @@ const EggsbeeSchema = new mongoose.Schema({
     },
     Eggsbeeid:{
         type:String,
+    },
+
+    OwnerEmail:{
+        type:String,
     }
  
 });

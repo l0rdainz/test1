@@ -28,6 +28,7 @@
   }
 
 .explorebody .sidenav{
+   
     border: none;
     border-radius: 5px;
     justify-content: center;
@@ -48,7 +49,7 @@
     display:block;
     height: 40px;
     width: 100%;
-    margin-top: 5%;
+    margin-top: 3%;
     
 }
 .explorebody .sidenav button:hover{

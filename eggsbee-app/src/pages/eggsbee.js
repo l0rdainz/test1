@@ -3,7 +3,7 @@ import BannerImage from "../assets/explore.webp";
 import '../styles/eggsbee.css';
 import axios from 'axios';
 import { Card,Button,Row,Container,Col,Modal} from "react-bootstrap";
-
+import {useAuth0} from "@auth0/auth0-react";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -21,12 +21,13 @@ function Eggsbee() {
   // const[Top,SetTop] = useState(false)
   const [cardbutton,SetCardbutton]= useState(true)
   const [selectedArray,setSelectedArray]=useState([])
-
+  const {user} = useAuth0();
   const handleExplore =() =>{
     SetAddrecipe(false)
   }
   const handleMyrecipes =() =>{
-    console.log('This button is also under construction')
+    document.getElementsByClassName('results').style.visibility = 'hidden';
+    console.log("thisbutton")
   }
   const handleAddrecipe =() =>{
     console.log('hi2')
@@ -45,7 +46,7 @@ function Eggsbee() {
     const callmodel=() =>{
       
       SetCardbutton(!cardbutton)
-     
+      
     }
     callmodel();
      // This is be executed when `loading` state changes
@@ -56,7 +57,7 @@ function Eggsbee() {
         Title: `${Title}`,
         Description: `${Description}`,
         Private:`${Private}`,
-        Createdby: "tester1111",
+        Createdby: `${user.email}`,
         Materials: `${Materials}`.split(','),
         Instruction: `${Instruction}`.split(','),
         Premium: `${Premium}`,
@@ -107,6 +108,7 @@ function Eggsbee() {
     <div className="sidenav"> 
     <button onClick={handleExplore}> Explore</button>
     <button onClick={handleMyrecipes}>My Recipes </button>
+    <button >Saved Recipes </button>
     <button onClick={handleAddrecipe}>Add Recipe </button>
     <button onClick={handleTop}>Top Recipes</button>
 

@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 // update user
 router.put('/:id', (req, res) => {
   User.findByIdAndUpdate(req.params.id, req.body)
-    .then(user => res.json({ msg: `User ${user._id} updated successfully` }))
+    .then(user => res.json({ msg: `User vcxc updated successfully` }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
     );

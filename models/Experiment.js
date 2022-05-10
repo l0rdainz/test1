@@ -35,7 +35,7 @@ const ExperimentSchema = new mongoose.Schema({
   Completed:{
       type:Boolean
   },
-  UserId:{
+  OwnerEmail:{
       type:String,
       required:true,
   },

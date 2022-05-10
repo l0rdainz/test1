@@ -5,7 +5,12 @@ const Recipe = require('../../models/Recipe');
 
 
 router.get('/test', (req, res) => res.send('Recipe route testing!'));
-
+router.get('/owneremail', (req, res) => {
+  console.log("eek")
+  Recipe.find({Createdby:`${req.query.email}`})
+    .then(recipe => res.json(recipe))
+    .catch(err => res.status(404).json({ norecipefound: `Email ${req.query.email} not found` }));
+});
 
 router.get('/', (req, res) => {
   Recipe.find()
@@ -15,10 +20,12 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
-  Recipe.findById(req.params.id)
+  Recipe.findById(req.query.id)
     .then(recipe => res.json(recipe))
-    .catch(err => res.status(404).json({ norecipefound: `Recipe ${req.params.id} not found` }));
+    .catch(err => res.status(404).json({ norecipefound: `RecipeID ${req.query.id} not found` }));
 });
+
+
 
 //add new recipe
 router.post('/', (req, res) => {

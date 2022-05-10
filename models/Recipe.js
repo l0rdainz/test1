@@ -28,7 +28,13 @@ const RecipeSchema = new mongoose.Schema({
     type: String
   },
   Img:{
-    type: String
+    type: [String],
+    default:["https://via.placeholder.com/150x150"],
+    required:true
+  },
+  Premium:{
+    type:Boolean,
+    default:false
   }
 });
 

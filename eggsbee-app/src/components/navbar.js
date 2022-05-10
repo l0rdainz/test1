@@ -12,7 +12,7 @@ function Navbar() {
     };
   
       const {loginWithRedirect} = useAuth0();
- 
+      const {logout,user,isAuthenticated,isLoading} = useAuth0();
 
     
     return (
@@ -54,8 +54,9 @@ function Navbar() {
             <FaAlignJustify/>
           </button>
         </div>
-        <button onClick={() => loginWithRedirect()}>Login</button>
-        <button onClick={() => loginWithRedirect()}>Log Out</button>
+        {isAuthenticated ? (<div className='username'> Welcome, {user.name} <button onClick={() => logout({returnTo: window.location.origin})}>Log Out</button></div>): (<div>  <button onClick={() => loginWithRedirect()}>Login</button></div>)}
+       
+       
         
         
       </div>

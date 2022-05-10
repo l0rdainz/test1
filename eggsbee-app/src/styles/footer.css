@@ -24,3 +24,22 @@
     float: right;
     
   }
+
+  @media only screen and (max-width: 600px) {
+    .socialMedia {
+      color: white;
+      padding-top:15px;
+      padding-left: 5%;
+      margin-right: 30%;
+      font-size: 200%;
+      cursor: pointer
+    }
+    .footer p {  
+      margin: auto;
+      color: white;
+      justify-content: right;
+      float: right;
+      padding-right: 5px;
+      font-size: 0.9rem;
+    }
+  }
