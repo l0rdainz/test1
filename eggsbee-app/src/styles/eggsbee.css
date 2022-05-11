@@ -68,8 +68,21 @@
     width:85%;
     padding-left:5%;
     padding-right:5%;
+    display:flex;
     
 }
+#newrecipe{
+    display: none;
+}
+#myrecipe{
+    display:none;
+    
+}
+#myrecipe button{
+    width:45%;
+    margin: 2%;
+}
+
 .explorebody .results .cardfooter{
     background-color: black;
     width:100%;
