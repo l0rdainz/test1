@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import BannerImage from "../assets/explore.webp";
 import '../styles/eggsbee.css';
-import Myrecipe from '../components/Myrecipe';
 import axios from 'axios';
 import { Card,Button,Row,Container,Col,Modal} from "react-bootstrap";
 import {useAuth0} from "@auth0/auth0-react";
@@ -48,9 +47,11 @@ function Eggsbee() {
   const handleTop =() =>{
     console.log('This button is under construction')
   }
-  const handlecardbutton=(recipe) =>{
-    setSelectedArray(recipe)
-    
+ 
+  const handlemycardbutton= async(recipe) =>{
+    await setSelectedArray(recipe)
+    SetCardbutton(!cardbutton)
+
   }
 
   const retrieveuserrecipe= async() =>{
@@ -60,7 +61,10 @@ function Eggsbee() {
           console.log(recipes)
   }
   const triggerdlt= async(recipe) =>{
-    axios.delete(BASE_URL+'recipes/id?id='+ `${recipe._id}`)
+    await axios.delete(BASE_URL+'recipes/id?id='+ `${recipe._id}`);
+    window.location.reload()
+   
+
   }
  
   useEffect(() => {
@@ -167,12 +171,12 @@ function Eggsbee() {
                             <Card.Body>
                                 <Card.Title><b>{Recipe.Title}</b></Card.Title>
                                 <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
-                                <Button onClick={()=>handlecardbutton(Recipe)}>View Recipe </Button>
+                                <Button onClick={()=>handlemycardbutton(Recipe)}>View Recipe </Button>
                                 
                                 <div className='cardfooter' id={ Recipe.Premium === true ? 'prem' : 'norm'}>Premium</div>
                             </Card.Body>
                             {cardbutton ?(
-                            <Modal show={cardbutton} onHide={()=>SetCardbutton(false)}>
+                            <Modal show={cardbutton} onHide={()=>SetCardbutton(false)} >
 
                                 <Modal.Header closeButton>
 
@@ -225,7 +229,7 @@ function Eggsbee() {
                       <Card.Body>
                           <Card.Title><b>{Recipe.Title}</b></Card.Title>
                           <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
-                          <Button ><FaEdit/> </Button>
+                          <Button onClick={()=>handlemycardbutton(Recipe)}><FaEdit/> </Button>
                           <Button onClick={()=>triggerdlt(Recipe)}><FaTrash/> </Button>
                           <div className='cardfooter' id={ Recipe.Premium === true ? 'prem' : 'norm'}>Premium</div>
                       </Card.Body>
@@ -234,7 +238,7 @@ function Eggsbee() {
 
                           <Modal.Header closeButton>
 
-                              <Modal.Title><b>{selectedArray.Title}</b></Modal.Title>
+                              <Modal.Title><b>{selectedArray.Title} fdsafdsfas</b></Modal.Title>
 
                           </Modal.Header>
 
