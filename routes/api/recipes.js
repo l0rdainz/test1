@@ -6,13 +6,14 @@ const Recipe = require('../../models/Recipe');
 
 router.get('/test', (req, res) => res.send('Recipe route testing!'));
 router.get('/owneremail', (req, res) => {
-  console.log("eek")
+  res.set('Access-Control-Allow-Origin', '*');
   Recipe.find({Createdby:`${req.query.email}`})
     .then(recipe => res.json(recipe))
     .catch(err => res.status(404).json({ norecipefound: `Email ${req.query.email} not found` }));
 });
 
 router.get('/', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   Recipe.find()
     .then(recipes => res.json(recipes))
     .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   Recipe.findById(req.query.id)
     .then(recipe => res.json(recipe))
     .catch(err => res.status(404).json({ norecipefound: `RecipeID ${req.query.id} not found` }));
@@ -45,7 +47,7 @@ router.put('/:id', (req, res) => {
 
 // delete recipe
 router.delete('/:id', (req, res) => {
-  Recipe.findByIdAndRemove(req.params.id, req.body)
+  Recipe.findByIdAndRemove(req.query.id)
     .then(recipe => res.json({ mgs: 'Recipe deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such recipe' }));
 });

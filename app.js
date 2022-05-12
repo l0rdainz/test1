@@ -12,7 +12,7 @@ const eggsbees = require('./routes/api/eggsbee.js');
 
 const app = express();
 
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 connectDB();
 app.get('/', (req, res) => res.send('Hello world!'));
 app.use(express.json())

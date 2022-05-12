@@ -5,6 +5,12 @@ const router = express.Router();
 const Eggsbee = require('../../models/Eggsbee');
 
 router.get('/test', (req, res) => res.send('Eggsbee route testing!'));
+router.get('/owneremail', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  Eggsbee.find({OwnerEmail:`${req.query.email}`})
+    .then(eggsbee => res.json(eggsbee))
+    .catch(err => res.status(404).json({ norecipefound: `Email ${req.query.email} not found` }));
+});
 router.get('/', (req, res) => {
   Eggsbee.find()
     .then(eggsbee => res.json(eggsbee))
