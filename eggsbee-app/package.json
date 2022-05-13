@@ -51,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "chart.js": "^3.7.1",
+    "react-chartjs-2": "^4.1.0",
     "react-icon": "^1.0.0",
     "react-router-dom": "^6.3.0"
   }
