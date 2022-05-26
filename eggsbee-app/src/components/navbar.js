@@ -17,7 +17,7 @@ function Navbar() {
     
     return (
       <div className="navbar">
-        
+        {/* navbar links here */}
         <div className="rightSide">
         <NavLink
         to="/"
@@ -55,7 +55,7 @@ function Navbar() {
           </button>
         </div>
         {isAuthenticated ? (<div className='username'> Welcome, {user.name} <button onClick={() => logout({returnTo: window.location.origin})}>Log Out</button></div>): (<div>  <button onClick={() => loginWithRedirect()}>Login</button></div>)}
-       
+       {/* check if user is logged in, if yes display welcome + name */}
        
         
         

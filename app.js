@@ -1,9 +1,9 @@
 const express = require('express');
-var cors = require('cors')
-const connectDB = require('./config/db');
-const books = require('./routes/api/books.js');
-const users = require('./routes/api/users.js');
-const experiments = require('./routes/api/experiments.js');
+var cors = require('cors') //this part needs to be edited before using it for prod
+const connectDB = require('./config/db'); //connecting to the db
+//importing all the exposed api endpoints here
+const users = require('./routes/api/users.js'); //users collection, this is optional if you are intending to use auth0
+const experiments = require('./routes/api/experiments.js'); 
 const orders = require('./routes/api/orders.js');
 const recipes = require('./routes/api/recipes.js');
 const shops = require('./routes/api/shops.js');
@@ -16,7 +16,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 connectDB();
 app.get('/', (req, res) => res.send('Hello world!'));
 app.use(express.json())
-app.use('/api/books', books);
+//exposing the endpoint on the backend server
 app.use('/api/eggsbee', eggsbees);
 app.use('/api/users', users);
 app.use('/api/exps', experiments);

@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../../models/Orders');
 
-
-router.get('/test', (req, res) => res.send('Order route testing!'));
+//boilerplate api here because orders not yet implemented
+router.get('/test', (req, res) => res.send('Order route testing!')); //used for testing
 
 
 router.get('/', (req, res) => {

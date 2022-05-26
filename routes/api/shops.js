@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Shop = require('../../models/Shop');
-
+//boilerplate api because theres no plan to implement shops yet
 
 router.get('/shop', (req, res) => res.send('Shop route testing!'));
 

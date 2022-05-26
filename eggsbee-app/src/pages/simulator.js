@@ -7,3 +7,5 @@ function simulator() {
 }
 
 export default simulator
+
+//boilerplate code for now

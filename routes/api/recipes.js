@@ -4,22 +4,22 @@ const router = express.Router();
 const Recipe = require('../../models/Recipe');
 
 
-router.get('/test', (req, res) => res.send('Recipe route testing!'));
-router.get('/owneremail', (req, res) => {
+router.get('/test', (req, res) => res.send('Recipe route testing!'));//remove this in prod
+router.get('/owneremail', (req, res) => { //filter collection by owneremail
   res.set('Access-Control-Allow-Origin', '*');
   Recipe.find({Createdby:`${req.query.email}`})
     .then(recipe => res.json(recipe))
     .catch(err => res.status(404).json({ norecipefound: `Email ${req.query.email} not found` }));
 });
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { //fetch all recipe
   res.set('Access-Control-Allow-Origin', '*');
   Recipe.find()
     .then(recipes => res.json(recipes))
     .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
 });
 
-
+//fetch recipe by id
 router.get('/:id', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   Recipe.findById(req.query.id)

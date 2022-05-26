@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Sim = require('../../models/SimulatorResult');
 
-
+//boilerplate template for simulator because this part is not ready
 router.get('/test', (req, res) => res.send('Sim route testing!'));
 
 

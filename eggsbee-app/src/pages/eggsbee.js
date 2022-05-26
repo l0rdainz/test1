@@ -9,6 +9,7 @@ import {FaEdit, FaTrash} from 'react-icons/fa';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function Eggsbee() {
+  // state variables 
   const[Title,SetTitle] = useState("")
   const[Description,SetDescription] = useState("")
   const[Materials,SetMaterials] = useState("")
@@ -19,17 +20,19 @@ function Eggsbee() {
   const[submitted,SetSubmitted] = useState(false)
   const[mine,SetMine] = useState([])
   const[Myrecipe,SetMyrecipe] = useState([])
-  // const[Top,SetTop] = useState(false)
   const [cardbutton,SetCardbutton]= useState(true)
   const [mycardbutton,SetMycardbutton] = useState(false)
   const [selectedArray,setSelectedArray]=useState([""])
   const {user} = useAuth0();
+
+// handle when explore is clicked
   const handleExplore =() =>{
     document.getElementById('explore').style.display = 'block';
     document.getElementById('newrecipe').style.display = 'none';
     document.getElementById('myrecipe').style.display = 'none';
    
   }
+  // handle when My Recipe is clicked
   const handleMyrecipes =() =>{ 
     document.getElementById('myrecipe').style.display = 'inline-block';
     document.getElementById('newrecipe').style.display = 'none';
@@ -37,6 +40,7 @@ function Eggsbee() {
     retrieveuserrecipe()
 
   }
+  // handle when add recipe is clicked
   const handleAddrecipe =() =>{
     document.getElementById('newrecipe').style.display = 'block';
     document.getElementById('explore').style.display = 'none';
@@ -44,8 +48,9 @@ function Eggsbee() {
    
     
   }
+  // handle when top recipes is clicked
   const handleTop =() =>{
-    console.log('This button is under construction')
+    console.log('This button is under construction') //have not added the functionality
   }
  
   const handlemycardbutton= async(recipe) =>{
@@ -53,13 +58,14 @@ function Eggsbee() {
     SetCardbutton(!cardbutton)
 
   }
-
+//retrieves all recipe created by logged in user
   const retrieveuserrecipe= async() =>{
           const response = await fetch(BASE_URL+'recipes/owneremail?email='+user.email)
           const recipes = await response.json()
           SetMine(recipes)
           console.log(recipes)
   }
+  //send delete request to database
   const triggerdlt= async(recipe) =>{
     await axios.delete(BASE_URL+'recipes/id?id='+ `${recipe._id}`);
     window.location.reload()
@@ -76,7 +82,7 @@ function Eggsbee() {
      // This is be executed when `loading` state changes
 }, [selectedArray])
   const addrecipe = async()=>{
-    
+    //send post request to add new recipe into database
     axios.post(BASE_URL+'recipes/',{
         Title: `${Title}`,
         Description: `${Description}`,
@@ -88,6 +94,7 @@ function Eggsbee() {
         Img: `${Imgurl}  `
 
     })
+    //clear form after submission
     document.getElementById("checkbox").checked = false;
     document.getElementById("checkbox1").checked = false;
     SetSubmitted(true)
@@ -120,7 +127,7 @@ function Eggsbee() {
         
       }
       fetchData()
-    },[])
+    },[]) //upon loading, remove all private recipe so they dont show up on explore page prob shld transfer this logic to the back end because users can still use packet sniffer to get the files
  
   
   return (
@@ -131,6 +138,7 @@ function Eggsbee() {
      
     <div className="explorebody">
     <div className="sidenav"> 
+    {/* sidenav bar in black */}
     <button onClick={handleExplore}> Explore</button>
     <button onClick={handleMyrecipes}>My Recipes </button>
     <button >Saved Recipes </button>
@@ -140,7 +148,7 @@ function Eggsbee() {
     </div>
       
       <div className="results" id="newrecipe"> 
-      
+      {/* html form here to add new recipe */}
       <h2>Add New Recipe</h2>
       <input type="text" placeholder='Title' value={Title} onChange={(e) => SetTitle(e.target.value)}></input>
       <textarea placeholder='Description' value={Description} onChange={(e) => SetDescription(e.target.value)}></textarea>
@@ -172,7 +180,7 @@ function Eggsbee() {
                                 <Card.Title><b>{Recipe.Title}</b></Card.Title>
                                 <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
                                 <Button onClick={()=>handlemycardbutton(Recipe)}>View Recipe </Button>
-                                
+                                {/* footer of card only exist if its a premium card */}
                                 <div className='cardfooter' id={ Recipe.Premium === true ? 'prem' : 'norm'}>Premium</div>
                             </Card.Body>
                             {cardbutton ?(
@@ -216,6 +224,7 @@ function Eggsbee() {
 
           
         </div>
+        {/* can possibly write this code into a component so that it can be reused for explore and my recipe */}
        <div className='results' id="myrecipe">
        <Row>
        {mine.map((Recipe) => (
@@ -229,7 +238,8 @@ function Eggsbee() {
                       <Card.Body>
                           <Card.Title><b>{Recipe.Title}</b></Card.Title>
                           <Card.Text>{Recipe.Description.split(".",1)}</Card.Text>
-                          <Button onClick={()=>handlemycardbutton(Recipe)}><FaEdit/> </Button>
+                          <Button onClick={()=>handlemycardbutton(Recipe)}><FaEdit/> </Button> 
+                          {/* edit button only opens the modal but doesnt provide edit functionality */}
                           <Button onClick={()=>triggerdlt(Recipe)}><FaTrash/> </Button>
                           <div className='cardfooter' id={ Recipe.Premium === true ? 'prem' : 'norm'}>Premium</div>
                       </Card.Body>

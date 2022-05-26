@@ -1,5 +1,6 @@
 import React from "react";
-import { FaFacebookSquare,FaDiscord,FaLinkedin} from 'react-icons/fa';
+import { FaFacebookSquare,FaDiscord,FaLinkedin} from 'react-icons/fa'; 
+// importing social media icons here
 
 import "../styles/footer.css";
 

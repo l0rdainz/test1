@@ -3,37 +3,43 @@ const mongoose = require('mongoose');
 const ExperimentSchema = new mongoose.Schema({
     RecipeId:{
         type:String,
-        required: true,
+        required: false,
     },
-    EggsbeeIds: {
+    Eggsbeeid: {
     type: String,
-    required: false
+    required: true
   },
   Timestarted: {
     type: Date,
     default: Date.now
   },
   SchemaVersion: {
-    type: Number,
+    type: String,
+    default:'V1',
     required: true
   },
-  Nosereading: {
-    type: Map,
+  Nosereading1: {
+    type: [Number],
+  },
+  Nosereading2: {
+    type: [Number],
+  },
+  Nosereading3: {
+    type: [Number],
+  },
+  Nosereading4: {
+    type: [Number],
   },
   Temp: {
-    type: Map,
+    type: [Number],
   },
-  Humidity: {
-    type: Map
+  TimeArray:{
+    type:[Number]
   },
-  Pressure: {
-    type: Map,
-  },
-  Sparger:{
-      type:Map,
-  },
+
   Completed:{
-      type:Boolean
+      type:Boolean,
+      default:false
   },
   OwnerEmail:{
       type:String,

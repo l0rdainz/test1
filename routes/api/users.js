@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
 
-
+//boilerplate for user endpoint since i decided to use auth0
 router.get('/test', (req, res) => res.send('User route testing!'));
 
 

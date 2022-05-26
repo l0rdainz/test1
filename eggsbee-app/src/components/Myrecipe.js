@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import {useAuth0} from "@auth0/auth0-react";
 
 
-function Myrecipe({mine}) {
+function Myrecipe() {
     const {user,isAuthenticated} = useAuth0();
   
     
@@ -15,3 +15,5 @@ function Myrecipe({mine}) {
 }
 
 export default Myrecipe
+
+// check if user is logged in, will not display recipes if user is not
