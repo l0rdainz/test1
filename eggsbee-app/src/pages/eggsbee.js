@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Card,Button,Row,Container,Col,Modal} from "react-bootstrap";
 import {useAuth0} from "@auth0/auth0-react";
 import {FaEdit, FaTrash} from 'react-icons/fa';
+import {Link} from 'react-router-dom'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -32,6 +33,7 @@ function Eggsbee() {
     document.getElementById('myrecipe').style.display = 'none';
    
   }
+
   // handle when My Recipe is clicked
   const handleMyrecipes =() =>{ 
     document.getElementById('myrecipe').style.display = 'inline-block';
@@ -202,7 +204,7 @@ function Eggsbee() {
                                 </Modal.Body>
 
                                 <Modal.Footer>
-
+                                  <Button style={{color: "white",backgroundColor:"#C54E57",border:"none"}} >   <Link id='link' to='/beforeexp' state={{ recipe: selectedArray }} >  Run </Link> </Button>
                                    <Button onClick={()=>SetCardbutton(false)}>
 
                                     Close

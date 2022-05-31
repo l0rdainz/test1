@@ -1,0 +1,34 @@
+.mainbody{
+    padding:5%
+}
+.mainbody .row-flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.mainbody .row-flex .leftblock img{
+    margin-right: 20px;
+    width:80%
+}
+.mainbody .row-flex .rightblock{
+   width: 50%;
+   align-items: right;
+}
+
+@media only screen and (max-width: 1000px) {
+   
+    #ingredients{
+        display:none
+    }  
+}
+
+@media only screen and (max-width: 800px) {
+   
+    .mainbody .row-flex .leftblock img{
+       display: none;
+    }
+    .mainbody .row-flex .rightblock{
+        width: 100%;
+        
+     }
+}
