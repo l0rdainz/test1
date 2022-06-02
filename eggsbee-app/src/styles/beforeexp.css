@@ -15,6 +15,25 @@
    align-items: right;
 }
 
+.mainbody .col-flex{
+    display: flex;
+    flex-direction: column;
+}
+#ingredients{
+    font-size: 1.3rem;
+}
+.mainbody .col-flex button{
+    border: none;
+    cursor: pointer;
+    background-color: #121619;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    display:block;
+    height: 40px;
+    width: 200px;
+    margin-top: 3%;
+}
 @media only screen and (max-width: 1000px) {
    
     #ingredients{
